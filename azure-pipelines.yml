@@ -27,3 +27,5 @@ steps:
 - script: |
     npm run build -- --profile
   displayName: 'Generate binary'
+
+  
