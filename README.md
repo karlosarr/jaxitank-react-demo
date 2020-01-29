@@ -12,6 +12,7 @@
 [npm-coreui-react-badge]: https://img.shields.io/npm/v/@coreui/react.png?style=flat-square
 [npm-coreui-react-download]: https://img.shields.io/npm/dm/@coreui/react.svg?style=flat-square
 [![Build Status](https://karlosarr.visualstudio.com/jaxitank-react-demo/_apis/build/status/karlosarr.jaxitank-react-demo?branchName=master)](https://karlosarr.visualstudio.com/jaxitank-react-demo/_build/latest?definitionId=3&branchName=master)
+[![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=karlosarr_api-jaxitank-react-demo&metric=alert_status)](https://sonarcloud.io/dashboard?id=karlosarr_api-jaxitank-react-demo)
 
 # CoreUI Free React Admin Template v2 [![Tweet](https://img.shields.io/twitter/url/http/shields.io.svg?style=social&logo=twitter)](https://twitter.com/intent/tweet?text=CoreUI%20-%20Free%20React%20Admin%20Template%20&url=https://coreui.io/react/&hashtags=bootstrap,admin,template,dashboard,panel,free,angular,react,vue)
 
