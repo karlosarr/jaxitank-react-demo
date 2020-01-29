@@ -25,5 +25,5 @@ steps:
   displayName: 'Sonar scanner'
 
 - script: |
-    run build
+    npm run build -- --profile
   displayName: 'Generate binary'
