@@ -28,4 +28,8 @@ steps:
     npm run build -- --profile
   displayName: 'Generate binary'
 
-  
+- task: PushToHeroku@0
+  inputs:
+    ApiKey: '318d7b31-aad2-4054-9ca5-8e873fff80e0'
+    AppName: 'react-demo-nginx'
+    PushRoot: 'build/static'
