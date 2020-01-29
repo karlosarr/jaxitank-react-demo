@@ -17,7 +17,6 @@ steps:
 
 - script: |
     npm install
-    npm install -g @angular/cli
     npm install -g sonarqube-scanner
   displayName: 'npm install'
 
@@ -26,5 +25,5 @@ steps:
   displayName: 'Sonar scanner'
 
 - script: |
-    ng build --prod
+    run build
   displayName: 'Generate binary'
