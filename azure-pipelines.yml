@@ -37,6 +37,15 @@ steps:
     replaceExistingArchive: true
   displayName: 'Published'
 
+- task: Bash@3
+  inputs:
+    targetType: 'inline'
+    script: |
+      # Write your commands here
+      echo 'Hello world'
+      ls -lsa
+  displayName: 'Ver contenido'
+
 - task: PublishBuildArtifacts@1
   inputs:
     PathtoPublish: '$(Build.ArtifactStagingDirectory)'
