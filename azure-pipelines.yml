@@ -44,6 +44,8 @@ steps:
       # Write your commands here
       echo 'Hello world'
       ls -lsa
+      pwd
+      echo '$(Build.ArtifactStagingDirectory)'
   displayName: 'Ver contenido'
 
 - task: PublishBuildArtifacts@1
