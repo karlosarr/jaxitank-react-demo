@@ -50,6 +50,6 @@ steps:
 
 - task: PublishBuildArtifacts@1
   inputs:
-    PathtoPublish: '/home/vsts/work/1/s'
+    PathtoPublish: '/home/vsts/work/1/s/build'
     ArtifactName: 'drop'
     publishLocation: 'Container'
