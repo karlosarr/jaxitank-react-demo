@@ -7,21 +7,21 @@ pipeline {
         label "swarm"
     }
     stages {
-        stage ('Install') {
-            steps {
-                checkout([
-                    $class: 'GitSCM',
-                    branches: [[name: '*/master']],
-                    doGenerateSubmoduleConfigurations: false,
-                    extensions: [],
-                    submoduleCfg: [],
-                    userRemoteConfigs: [[
-                        credentialsId: 'github_karlosarr',
-                        url: 'https://github.com/karlosarr/jaxitank-react-demo'
-                    ]]
-                ])
-            }
-        }
+        // stage ('Install') {
+        //     steps {
+        //         checkout([
+        //             $class: 'GitSCM',
+        //             branches: [[name: '*/master']],
+        //             doGenerateSubmoduleConfigurations: false,
+        //             extensions: [],
+        //             submoduleCfg: [],
+        //             userRemoteConfigs: [[
+        //                 credentialsId: 'github_karlosarr',
+        //                 url: 'https://github.com/karlosarr/jaxitank-react-demo'
+        //             ]]
+        //         ])
+        //     }
+        // }
         stage('preparing docker') {
             agent {
                 docker { 
@@ -60,28 +60,51 @@ pipeline {
             when {
                 branch 'master'
             }
-            stage('Building image') {
-                steps{
-                    script {
-                        dockerImage = docker.build registry + ":v1.0.$BUILD_NUMBER"
-                    }
-                }
-            }
-            stage('Deploy Image') {
-                steps{
-                    script {
-                        docker.withRegistry( '', registryCredential ) {
-                            dockerImage.push()
+            steps {
+                stage('Building image') {
+                    steps{
+                        script {
+                            dockerImage = docker.build registry + ":v1.0.$BUILD_NUMBER"
                         }
                     }
                 }
-            }
-            stage('Remove Unused docker image') {
-                steps{
-                    sh "docker rmi $registry:v1.0.$BUILD_NUMBER"
+                stage('Deploy Image') {
+                    steps{
+                        script {
+                            docker.withRegistry( '', registryCredential ) {
+                                dockerImage.push()
+                            }
+                        }
+                    }
+                }
+                stage('Remove Unused docker image') {
+                    steps{
+                        sh "docker rmi $registry:v1.0.$BUILD_NUMBER"
+                    }
                 }
             }
         }
+        // stage('Building image') {
+        //     steps{
+        //         script {
+        //             dockerImage = docker.build registry + ":v1.0.$BUILD_NUMBER"
+        //         }
+        //     }
+        // }
+        // stage('Deploy Image') {
+        //     steps{
+        //         script {
+        //             docker.withRegistry( '', registryCredential ) {
+        //                 dockerImage.push()
+        //             }
+        //         }
+        //     }
+        // }
+        // stage('Remove Unused docker image') {
+        //     steps{
+        //         sh "docker rmi $registry:v1.0.$BUILD_NUMBER"
+        //     }
+        // }
         stage('Clean') {
             steps {
                 deleteDir()
