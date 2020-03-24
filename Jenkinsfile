@@ -7,21 +7,6 @@ pipeline {
         label "swarm"
     }
     stages {
-        // stage ('Install') {
-        //     steps {
-        //         checkout([
-        //             $class: 'GitSCM',
-        //             branches: [[name: '*/master']],
-        //             doGenerateSubmoduleConfigurations: false,
-        //             extensions: [],
-        //             submoduleCfg: [],
-        //             userRemoteConfigs: [[
-        //                 credentialsId: 'github_karlosarr',
-        //                 url: 'https://github.com/karlosarr/jaxitank-react-demo'
-        //             ]]
-        //         ])
-        //     }
-        // }
         stage('preparing docker') {
             agent {
                 docker { 
@@ -43,17 +28,6 @@ pipeline {
                         sh 'npm run build'
                     }
                 }
-                // stage('Deploy for production') {
-                //     when {
-                //         branch 'master'
-                //     }
-                //     steps {
-                //         script {
-                //             sh 'mvn -DskipITs --settings ./maven/settings.xml clean package'
-                //         }
-                //         step([$class: 'TeamCollectResultsPostBuildAction'])
-                //     }
-                // }
             }
         }
         stage('Deploy for production') {
@@ -84,27 +58,6 @@ pipeline {
                 }
             }
         }
-        // stage('Building image') {
-        //     steps{
-        //         script {
-        //             dockerImage = docker.build registry + ":v1.0.$BUILD_NUMBER"
-        //         }
-        //     }
-        // }
-        // stage('Deploy Image') {
-        //     steps{
-        //         script {
-        //             docker.withRegistry( '', registryCredential ) {
-        //                 dockerImage.push()
-        //             }
-        //         }
-        //     }
-        // }
-        // stage('Remove Unused docker image') {
-        //     steps{
-        //         sh "docker rmi $registry:v1.0.$BUILD_NUMBER"
-        //     }
-        // }
         stage('Clean') {
             steps {
                 deleteDir()
