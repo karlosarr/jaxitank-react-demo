@@ -60,7 +60,7 @@ pipeline {
             when {
                 branch 'master'
             }
-            steps {
+            stages {
                 stage('Building image') {
                     steps{
                         script {
