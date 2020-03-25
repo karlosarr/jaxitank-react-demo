@@ -48,6 +48,22 @@ steps:
       echo '$(Build.ArtifactStagingDirectory)'
   displayName: 'Ver contenido'
 
+- task: Docker@2
+  inputs:
+    containerRegistry: 'Docker Hub'
+    repository: 'karlosarr/nginx-react-demo'
+    command: 'buildAndPush'
+    Dockerfile: '**/Dockerfile'
+    tags: 'v1.0.$(Build.BuildId)'
+
+- task: Docker@2
+  inputs:
+    containerRegistry: 'Docker Hub'
+    repository: 'karlosarr/nginx-react-demo'
+    command: 'buildAndPush'
+    Dockerfile: '**/Dockerfile'
+    tags: 'latest'
+
 - task: PublishBuildArtifacts@1
   inputs:
     PathtoPublish: '/home/vsts/work/1/s/build'
